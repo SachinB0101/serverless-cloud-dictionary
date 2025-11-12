@@ -6,7 +6,7 @@ A **serverless cloud dictionary application** that allows users to explore and l
 
 ## Features
 
-- **Search Cloud Terms**: Quickly find definitions for terms related to cloud technologies. Also includes an **autocomplete feature** for faster search.  
+- **Search Cloud Terms**: Quickly find definitions for terms related to cloud technologies. Includes an **autocomplete feature** with **debouncing** for faster and more efficient search. 
 - **View Definitions**: Access detailed explanations for each cloud term.  
 - **Serverless Architecture**: Leverages AWS services for scalability and low maintenance.  
 - **Batch Data Upload**: Efficiently write multiple terms and definitions to DynamoDB using batch operations.  
