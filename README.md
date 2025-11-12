@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Cloud Dictionary Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A **serverless cloud dictionary application** that allows users to explore and learn cloud technology terms. Built with AWS serverless services and a React frontend, this project provides a fast, scalable, and easy-to-use platform for accessing cloud-related definitions.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Search Cloud Terms**: Quickly find definitions for terms related to cloud technologies.  
+- **View Definitions**: Access detailed explanations for each cloud term.  
+- **Serverless Architecture**: Leverages AWS services for scalability and low maintenance.  
+- **Batch Data Upload**: Efficiently write multiple terms and definitions to DynamoDB using batch operations.  
 
-### `npm start`
+## Architecture
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project is designed using a **serverless architecture**:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Backend**:  
+  - **AWS Lambda**: Handles all API logic and processing.  
+  - **Amazon DynamoDB**: Stores dictionary terms and their definitions.  
+  - **Batch Operations**: Enables bulk writing of dictionary terms into DynamoDB.  
+  - **API Gateway**: Exposes API endpoints to the frontend.  
 
-### `npm test`
+- **Frontend**:  
+  - **React.js** application hosted on **AWS Amplify**.  
+  - Communicates with backend via the API endpoints deployed through Amplify.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+- **Frontend**: React.js, AWS Amplify  
+- **Backend**: AWS Lambda, API Gateway  
+- **Database**: Amazon DynamoDB  
+- **Hosting**: AWS Amplify  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js and npm installed  
+- AWS account with Amplify, Lambda, and DynamoDB access  
+- Amplify CLI installed (`npm install -g @aws-amplify/cli`)  
 
-### `npm run eject`
+### Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Clone the repository**  
+   ```bash
+   git clone <your-repo-url>
+   cd serverless-cloud-dictionary
