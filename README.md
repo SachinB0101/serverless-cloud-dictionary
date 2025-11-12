@@ -1,5 +1,7 @@
 # Cloud Dictionary Application
 
+Live Demo: [https://main.d1utiqi17bjp3v.amplifyapp.com](https://main.d1utiqi17bjp3v.amplifyapp.com)
+
 A **serverless cloud dictionary application** that allows users to explore and learn cloud technology terms. Built with AWS serverless services and a React frontend, this project provides a fast, scalable, and easy-to-use platform for accessing cloud-related definitions.
 
 ## Features
