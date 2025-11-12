@@ -26,17 +26,23 @@ const App = () => {
         />
       </header>
       <div className="dictionary-container">
-        {hasSearched && filteredTerms.map((term) => (
-          <div key={term.term} className="card">
-              <h3>
-                {term.term
-                  .split(" ")
-                  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ")}
-              </h3>
-            <p>{term.definition}</p>
-          </div>
-        ))}
+        {hasSearched ? (
+          filteredTerms.length > 0 ? (
+            filteredTerms.map((term) => (
+              <div key={term.term} className="card">
+                <h3>
+                  {term.term
+                    .split(" ")
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
+                </h3>
+                <p>{term.definition}</p>
+              </div>
+            ))
+          ) : (
+            <p>No results found.</p>
+          )
+  ) : null}
       </div>
     </div>
   );
