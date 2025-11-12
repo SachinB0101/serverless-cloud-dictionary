@@ -18,7 +18,12 @@ const App = () => {
           setFilteredTerms={setFilteredTerms}
           setHasSearched={setHasSearched}
         />
-        <SearchResultList results={results}/>
+        <SearchResultList 
+          results={results} 
+          setResults={setResults}
+          setFilteredTerms={setFilteredTerms}
+          setHasSearched={setHasSearched}
+        />
       </header>
       <div className="dictionary-container">
         {hasSearched && filteredTerms.map((term) => (

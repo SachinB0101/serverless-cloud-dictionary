@@ -35,7 +35,7 @@ export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
         })
         .catch(error => {
         console.error('Error fetching data:', error);
-    });
+        });
   };
 
   const handleChange = (value) =>{

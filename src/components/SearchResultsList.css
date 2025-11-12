@@ -21,6 +21,11 @@
   margin-top: 5px;
 }
 
+/* Hide when empty */
+.search-results-list:empty {
+  display: none;
+}
+
 .search-result-item {
   padding: 12px 20px;
   cursor: pointer;
@@ -49,7 +54,7 @@
   width: 6px;
 }
 
-.search-results-list::-webkit-scrollbar-track {
+.search-resrollbar-track {
   background: #f1f1f1;
   border-radius: 0 8px 8px 0;
 }
@@ -61,12 +66,4 @@
 
 .search-results-list::-webkit-scrollbar-thumb:hover {
   background: #5c6bc0;
-}
-
-/* No results message */
-.no-results {
-  padding: 20px;
-  text-align: center;
-  color: #666;
-  font-style: italic;
 }
