@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useRef} from "react";
 import axios from 'axios';
 import { useDebounce } from '../hooks'
 
@@ -6,9 +6,15 @@ export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
     const [terms, setTerms] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
+    const lastValueRef = useRef(''); // store last searched value
+
     const apiUrl = process.env.REACT_APP_API_URL;
 
     const handleSearch = useCallback((value) => {
+        if (value === lastValueRef.current) return;
+
+        lastValueRef.current = value;
+
         if (!value) {
             console.log('Empty search term, skipping API call');
             setTerms([]);
