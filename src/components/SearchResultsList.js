@@ -8,7 +8,6 @@ export const SearchResultList = ({results, setResults, setFilteredTerms, setHasS
         console.log('Clicked result:', result);
         const apiUrl = process.env.REACT_APP_API_URL;
 
-        setHasSearched(true);
         setResults([]);
 
         axios
@@ -26,6 +25,8 @@ export const SearchResultList = ({results, setResults, setFilteredTerms, setHasS
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+
+        setHasSearched(true);
     };
     return (
         <div className="search-results-container">
