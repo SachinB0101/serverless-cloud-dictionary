@@ -1,48 +1,27 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
 import './App.css';
+import { SearchBar } from './components/Searchbar';
+import { SearchResultList } from './components/SearchResultsList';
 
 const App = () => {
-  const [terms, setTerms] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [filteredTerms, setFilteredTerms] = useState([]);
-
-  const apiUrl = process.env.REACT_APP_API_URL;
-
-  const handleSearch = () => {
-    console.log('Fetching data from API...');
-    
-    // Construct the URL based on searchTerm
-    const url = searchTerm
-      ? `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`
-      : `${apiUrl}/get-definition`; // Adjust for getting all terms if no searchTerm
-
-    axios
-      .get(url)
-      .then(response => {
-        console.log('API Response:', response.data);
-        setTerms(response.data ? [response.data] : []);  // Assuming only one term returned
-        setFilteredTerms(response.data ? [response.data] : []);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  };
+  const [results, setResults] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Cloud Dictionary</h1>
-        <input
-          type="text"
-          placeholder="Search for a term"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+        <SearchBar 
+          setResults={setResults}
+          setFilteredTerms={setFilteredTerms}
+          setHasSearched={setHasSearched}
         />
-        <button onClick={handleSearch}>Search</button> {/* Add Search button */}
+        <SearchResultList results={results}/>
       </header>
       <div className="dictionary-container">
-        {filteredTerms.map((term) => (
+        {hasSearched && filteredTerms.map((term) => (
           <div key={term.term} className="card">
             <h3>{term.term}</h3>
             <p>{term.definition}</p>
