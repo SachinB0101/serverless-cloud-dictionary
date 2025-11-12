@@ -28,7 +28,12 @@ const App = () => {
       <div className="dictionary-container">
         {hasSearched && filteredTerms.map((term) => (
           <div key={term.term} className="card">
-            <h3>{term.term}</h3>
+              <h3>
+                {term.term
+                  .split(" ")
+                  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ")}
+              </h3>
             <p>{term.definition}</p>
           </div>
         ))}
