@@ -7,7 +7,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredTerms, setFilteredTerms] = useState([]);
 
-  const apiUrl = 'https://q7hhy2bki5.execute-api.ca-central-1.amazonaws.com/dev'; // My API Gateway URL
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSearch = () => {
     console.log('Fetching data from API...');
