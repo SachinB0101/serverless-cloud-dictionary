@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import axios from 'axios';
+import { useDebounce } from '../hooks'
 
 export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
     const [terms, setTerms] = useState([]);
@@ -7,8 +8,8 @@ export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
 
     const apiUrl = process.env.REACT_APP_API_URL;
 
-    const handleSearch = (value) => {
-            if (!value) {
+    const handleSearch = useCallback((value) => {
+        if (!value) {
             console.log('Empty search term, skipping API call');
             setTerms([]);
             setFilteredTerms([]);
@@ -36,18 +37,21 @@ export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
         .catch(error => {
         console.error('Error fetching data:', error);
         });
-  };
+    }, [apiUrl, setResults, setFilteredTerms]);
 
-  const handleChange = (value) =>{
-    setHasSearched(false);
-    setSearchTerm(value);
-    handleSearch(value);
-  };
+    // Debounce the search function with 500ms delay
+    const debouncedSearch = useDebounce(handleSearch, 500);
 
-  const handleHasSearched = () => {
-    setHasSearched(true);
-    setResults([]);
-  };
+    const handleChange = (value) => {
+        setHasSearched(false);
+        setSearchTerm(value);
+        debouncedSearch(value);
+    };
+
+    const handleHasSearched = () => {
+        setHasSearched(true);
+        setResults([]);
+    };
 
     return(
         <div>
@@ -58,7 +62,6 @@ export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
             onChange={(e) => handleChange(e.target.value)}
             />
             <button onClick={() => handleHasSearched()}>Search</button>
-
         </div>
     )
 }
