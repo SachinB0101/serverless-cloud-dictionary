@@ -46,7 +46,7 @@ export const SearchBar = ({setResults, setFilteredTerms, setHasSearched}) => {
     }, [apiUrl, setResults, setFilteredTerms]);
 
     // Debounce the search function with 500ms delay
-    const debouncedSearch = useDebounce(handleSearch, 500);
+    const debouncedSearch = useDebounce(handleSearch, 300);
 
     const handleChange = (value) => {
         setHasSearched(false);
