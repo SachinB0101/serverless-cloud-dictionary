@@ -1,0 +1,33 @@
+name: Deploy Lambda Functions
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "backend/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ca-central-1   # change if needed
+
+      # ZIP AND DEPLOY fetchTermFromDynamoDB
+      - name: Zip fetchTermFromDynamoDB
+        run: |
+          cd backend/fetchTermFromDynamoDB
+          zip -r ../../fetchTermFromDynamoDB.zip .
+      - name: Deploy fetchTermFromDynamoDB
+        run: |
+          aws lambda update-function-code \
+            --function-name fetchTermFromDynamoDB \
+            --zip-file fileb://fetchTermFromDynamoDB.zip
